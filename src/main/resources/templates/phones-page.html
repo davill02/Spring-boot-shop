@@ -13,9 +13,7 @@
             crossorigin="anonymous"></script>
     <title>PhoneShop</title>
 </head>
-<div>
-    ${cart}
-</div>
+
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone"
@@ -25,12 +23,8 @@
         </svg>
         Phonify
     </a>
-    <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a href="#" class="nav-link">Cart </a>
-            <div id="quantity">Quantity: ${cart.quantity}</div>
-            <div id="price">Price: ${cart.totalPrice} $</div>
-        </li>
+    <ul th:each="category : ${categories}" class="navbar-nav me-auto">
+        <a th:href="@{/phone(field=${param.field}, order=${param.field}, category = ${category.name})}" th:text="${category.name}" class="nav-link">Cart </a>
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -47,12 +41,36 @@
         <tr>
             <td>Image</td>
             <td>Brand
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='brand',order='asc')}"
+                   th:text="'&#8679'"
+                   style="font-size: 125%;' : 'color: grey;"></a>
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='brand',order='desc')}"
+                   th:text="'&#8681'"
+                   style="font-size: 125%;"></a>
             </td>
             <td>Model
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='model',order='asc')}"
+                   th:text="'&#8679'"
+                   style="font-size: 125%;' : 'color: grey;"></a>
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='model',order='desc')}"
+                   th:text="'&#8681'"
+                   style="font-size: 125%;"></a>
             </td>
             <td>Display size
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='displaySizeInches',order='asc')}"
+                   th:text="'&#8679'"
+                   style="font-size: 125%;' : 'color: grey;"></a>
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='displaySizeInches',order='desc')}"
+                   th:text="'&#8681'"
+                   style="font-size: 125%;"></a>
             </td>
             <td>Price
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='price',order='asc')}"
+                   th:text="'&#8679'"
+                   style="font-size: 125%;' : 'color: grey;"></a>
+                <a th:href="@{/phone(category=${param.category!=null}?${param.category},field='price',order='desc')}"
+                   th:text="'&#8681'"
+                   style="font-size: 125%;"></a>
             </td>
 
         </tr>
@@ -65,7 +83,7 @@
                 >
             </td>
             <td th:text="${phone.brand}"></td>
-            <td ><a th:text="${phone.model}" th:href="@{'/phones/'+${phone.id}}"></a></td>
+            <td><a th:text="${phone.model}" th:href="@{'/phones/'+${phone.id}}"></a></td>
             <td th:text="${phone.displaySizeInches}">"</td>
             <td th:text="${phone.price}"></td>
         </tr>
