@@ -4,6 +4,7 @@ final public class ControllersConstants {
     public final static String CATEGORIES = "categories";
     public final static String COUNT_ATTR = "count";
     public final static String PHONES_ATTR = "phones";
+    public static final String PHONE_DETAIL_ATTR = "phoneDetail";
 
     private ControllersConstants() {
     }

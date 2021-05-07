@@ -11,8 +11,15 @@ sourceCompatibility = '11'
 repositories {
     mavenCentral()
 }
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
 
 dependencies {
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
     testCompileOnly 'org.projectlombok:lombok:1.18.20'
